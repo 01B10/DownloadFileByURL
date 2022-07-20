@@ -1,0 +1,47 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: aqua;
+}
+
+.boxFile {
+  height: 10rem;
+  padding: 20px 10px;
+  background-color: wheat;
+  border-radius: 5px;
+}
+
+.boxFile form input {
+  background-color: aliceblue;
+  margin-bottom: 10px;
+}
+
+.boxFile form button {
+  background-color: aqua;
+  opacity: 0.5;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.boxFile form input,
+.boxFile form button {
+  width: 100%;
+  outline: none;
+  border: 2px solid transparent;
+  padding: 10px;
+  user-select: none;
+}
+
+form input:valid + button {
+  opacity: 1;
+  cursor: pointer;
+  pointer-events: all;
+}

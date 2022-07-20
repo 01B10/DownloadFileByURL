@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="boxFile">
+        <header>
+            <h1>File Downloader by URL</h1>
+        </header>
+        <form action="">
+            <input type="url" placeholder="Paste file url..." required>
+            <button>Download File</button>
+        </form>
+    </div>
+</body>
+<script>
+    const fileinput = document.querySelector("input");
+    const downloadBtn = document.querySelector("button");
+    downloadBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        downloadBtn.innerText = "Downloading File...";
+        fetchFile(fileinput.value);
+    })
+    function fetchFile(url) {
+        fetch(url).then(res => res.blob()).then(file => {
+            let temUrl = URL.createObjectURL(file);
+            let aTag = document.createElement("a");
+            aTag.href = temUrl;
+            aTag.download = url.replace(/^.*[\\\/]/, "");
+            document.body.appendChild(aTag);
+            aTag.click(); // click then to download
+            aTag.remove(); // after downlod will remove tag a
+            URL.revokeObjectURL(temUrl);
+            downloadBtn.innerText = "Download File";
+        });
+    }
+</script>
+
+</html>
